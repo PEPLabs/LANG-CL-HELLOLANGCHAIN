@@ -33,4 +33,4 @@ https://python.langchain.com/docs/modules/chains/foundational/llm_chain
 
 def lab():
     llm = AzureChatOpenAI(deployment_name=deployment, model_name="gpt-35-turbo")
-    return llm.invoke("say hello llm")
+    return "todo"
