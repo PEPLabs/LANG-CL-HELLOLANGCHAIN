@@ -33,7 +33,7 @@ class TestLLMResponse(unittest.TestCase):
         self.assertIsInstance(result, langchain_core.messages.ai.AIMessage)
 
     """
-    The JSON of the response returned from the lab method should contain "hello world"
+    The message response returned from the lab method should contain "hello llm"
     (not case or punctuation sensitive.)
     """
 
