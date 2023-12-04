@@ -23,8 +23,9 @@ class TestLLMResponse(unittest.TestCase):
         llm = AzureChatOpenAI(deployment_name=deployment, model_name="gpt-35-turbo")
 
     """
-    The variable returned from the lab method should be an HTTP response, with a status
-    200. If the status is 400, then your request was incorrectly formatted.
+    The variable returned from the lab function should be an langchain AI response. If this test
+    fails, then the AI message request either failed, or you have not properly configured the lab function
+    to return the result of the LLM chat.
     """
 
     def test_lab_ai_response(self):
