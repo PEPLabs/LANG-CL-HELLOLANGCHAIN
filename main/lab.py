@@ -18,9 +18,10 @@ making detailed HTTP requests, and can remain more agnostic to the respective LL
 
 The most basic way to interact with the LLM is to use the llm.invoke method. The first
 argument passed to the invoke is the prompt, for instance, calling llm.invoke("tell me a joke")
-will return a JSON response containing the LLM's response.
+will return an AIMessage response containing the LLM's response. The AIMessage object
+will contain the message text of the AI's response.
 
-TODO: Within this function, retrieve a JSON response from the provided llm object (AzureChatOpenAI)
+TODO: Within this function, retrieve an AI response from the provided llm object (AzureChatOpenAI)
 that contains a 'hello llm' response by instructing the LLM to say 'hello llm'. The test cases will verify that the 
 function produces the expected JSON format, and that it contains a 'hello llm' message.
 

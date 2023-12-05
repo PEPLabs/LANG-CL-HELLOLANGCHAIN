@@ -37,7 +37,7 @@ class TestLLMResponse(unittest.TestCase):
     (not case or punctuation sensitive.)
     """
 
-    def test_hello_response(self):
+    def test_hello_llm_response(self):
         result = lab()
         content = result.content.lower()
         self.assertIn("hello", content)  # Verifies if "hello" is present in the result
