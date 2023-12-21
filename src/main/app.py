@@ -1,7 +1,6 @@
 import langchain_core.messages.ai
-import requests
 
-from main.lab import lab
+from src.main.lab import lab
 
 """
 This file will contain some sample code to send the output of the functions in lab.py to the 

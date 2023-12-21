@@ -8,7 +8,7 @@ import unittest
 
 import langchain_core.messages.ai
 from langchain.chat_models import AzureChatOpenAI
-from main.lab import lab
+from src.main.lab import lab
 
 
 class TestLLMResponse(unittest.TestCase):

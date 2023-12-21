@@ -33,5 +33,5 @@ https://python.langchain.com/docs/modules/chains/foundational/llm_chain
 
 
 def lab():
-    llm = AzureChatOpenAI(deployment_name=deployment, model_name="gpt-35-turbo")
+    llm = AzureChatOpenAI(model_name="gpt-35-turbo")
     return "todo"
