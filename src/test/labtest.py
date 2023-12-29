@@ -3,24 +3,33 @@ This file will contain test cases for the automatic evaluation of your
 solution in main/lab.py. You should not modify the code in this file. You should
 also manually test your solution by running main/app.py.
 """
-import os
 import unittest
 
 import langchain_core.messages.ai
-from langchain.chat_models import AzureChatOpenAI
+from langchain_core.outputs import LLMResult
+
 from src.main.lab import lab
+from src.utilities.llm_testing_util import llm_connection_check, llm_wakeup
 
 
 class TestLLMResponse(unittest.TestCase):
     """
-    This test will verify that the connection to an external LLM is made. If it does not
-    work, this may be because the API key is invalid, or the service may be down.
-    If that is the case, this lab may not be completable.
+    This function is a sanity check for the Language Learning Model (LLM) connection.
+    It attempts to generate a response from the LLM. If a 'Bad Gateway' error is encountered,
+    it initiates the LLM wake-up process. This function is critical for ensuring the LLM is
+    operational before running tests and should not be modified without understanding the
+    implications.
+    Raises:
+        Exception: If any error other than 'Bad Gateway' is encountered, it is raised to the caller.
     """
-
     def test_llm_sanity_check(self):
-        deployment = os.environ['DEPLOYMENT_NAME']
-        llm = AzureChatOpenAI(deployment_name=deployment, model_name="gpt-35-turbo")
+        try:
+            response = llm_connection_check()
+            self.assertIsInstance(response, LLMResult)
+        except Exception as e:
+            if 'Bad Gateway' in str(e):
+                llm_wakeup()
+                self.fail("LLM is not awake. Please try again in 3-5 minutes.")
 
     """
     The variable returned from the lab function should be an langchain AI response. If this test
@@ -41,7 +50,7 @@ class TestLLMResponse(unittest.TestCase):
         result = lab()
         content = result.content.lower()
         self.assertIn("hello", content)  # Verifies if "hello" is present in the result
-        self.assertIn("llm", content)  # Verifies if "world" is present in the result
+        self.assertIn("help", content)  # Verifies if "help" is present in the result
 
 
 if __name__ == '__main__':

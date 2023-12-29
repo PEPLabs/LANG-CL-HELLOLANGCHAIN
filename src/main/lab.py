@@ -1,14 +1,7 @@
-import os
-from langchain.chat_models import AzureChatOpenAI
+from langchain_community.chat_models import ChatHuggingFace
+from langchain_community.llms.huggingface_endpoint import HuggingFaceEndpoint
 
-"""
-All requests to the LLM require some form of a key.
-Other sensitive data has also been hidden through environment variables.
-"""
-api_key = os.environ['OPENAI_API_KEY']
-base_url = os.environ['OPENAI_API_BASE']
-deployment = os.environ['DEPLOYMENT_NAME']
-version = os.environ['OPENAI_API_VERSION']
+
 
 """
 This function interacts with an LLM and will prompt it for some
@@ -33,5 +26,13 @@ https://python.langchain.com/docs/modules/chains/foundational/llm_chain
 
 
 def lab():
-    llm = AzureChatOpenAI(model_name="gpt-35-turbo")
-    return "todo"
+    llm = HuggingFaceEndpoint(
+        endpoint_url="https://z8dvl7fzhxxcybd8.eu-west-1.aws.endpoints.huggingface.cloud",
+        task="text2text-generation",
+        model_kwargs={
+            "max_new_tokens": 200
+        }
+    )
+    chat_model = ChatHuggingFace(llm=llm)
+
+    return chat_model.invoke("hello llm")
