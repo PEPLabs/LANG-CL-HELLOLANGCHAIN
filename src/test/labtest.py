@@ -13,6 +13,7 @@ from src.utilities.llm_testing_util import llm_connection_check, llm_wakeup
 
 
 class TestLLMResponse(unittest.TestCase):
+
     """
     This function is a sanity check for the Language Learning Model (LLM) connection.
     It attempts to generate a response from the LLM. If a 'Bad Gateway' error is encountered,

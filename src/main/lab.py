@@ -1,8 +1,6 @@
 from langchain_community.chat_models import ChatHuggingFace
 from langchain_community.llms.huggingface_endpoint import HuggingFaceEndpoint
 
-
-
 """
 This function interacts with an LLM and will prompt it for some
 generic response. The function will return the response JSON. Langchain acts as an
@@ -35,4 +33,4 @@ def lab():
     )
     chat_model = ChatHuggingFace(llm=llm)
 
-    return chat_model.invoke("hello llm")
+    return "todo"
