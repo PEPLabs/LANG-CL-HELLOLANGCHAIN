@@ -1,3 +1,5 @@
+import os
+
 from langchain_community.chat_models import ChatHuggingFace
 from langchain_community.llms.huggingface_endpoint import HuggingFaceEndpoint
 
@@ -12,7 +14,7 @@ argument passed to the invoke is the prompt, for instance, calling llm.invoke("t
 will return an AIMessage response containing the LLM's response. The AIMessage object
 will contain the message text of the AI's response.
 
-TODO: Within this function, retrieve an AI response from the provided llm object (AzureChatOpenAI)
+TODO: Within this function, retrieve an AI response from the provided chat_model object (ChatHuggingFace)
 that contains a 'hello llm' response by instructing the LLM to say 'hello llm'. The test cases will verify that the 
 function produces the expected JSON format, and that it contains a 'hello llm' message.
 
@@ -25,7 +27,7 @@ https://python.langchain.com/docs/modules/chains/foundational/llm_chain
 
 def lab():
     llm = HuggingFaceEndpoint(
-        endpoint_url="https://z8dvl7fzhxxcybd8.eu-west-1.aws.endpoints.huggingface.cloud",
+        endpoint_url=os.environ['LLM_ENDPOINT'],
         task="text2text-generation",
         model_kwargs={
             "max_new_tokens": 200
